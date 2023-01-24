@@ -69,7 +69,7 @@ The utility also is designed to produce output formats (e.g., JSON) and handle e
 
 Since the utility comes with a default configuration file and input schemas ready-mde for both SPDX and CycloneDX validation, the best way to install it (at this time) is to clone the entirety of the repository and then [build it](#building) using the `Makefile`.
 
-Over time, we hope to be able to create a release process for the binary with just the necessary supporting files, but at this time achieving the validation function is tactically important.
+Over time, we hope to be able to create a release process for the binary with just the necessary supporting files.
 
 ```bash
 git clone git@github.com:IBM/sbom-utility.git
@@ -80,6 +80,8 @@ git clone git@github.com:IBM/sbom-utility.git
 ## Running
 
 Currently, you must build an executable for your local system. See the [Prerequisites](#prerequisites) and [Building](#building) sections under [Development](#development) for details.
+
+**Note** Be sure to copy the required configuration files `config.json` and `license.json` to wherever you place the executable in your PATH.  Otherwise, you will have to supply their relative location as command flags.
 
 ### Commands
 
@@ -126,11 +128,11 @@ The `license` command supports the following subcommands:
 
 ##### Format flag
 
-Use the `--format` flag on the `license list` or `license policy` subcommands  to choose one of the supported output formats:
+Use the `--format` flag on the `license list` or `license policy` subcommands to choose one of the supported output formats:
 
-- **Text** (default): `--format text`
-- **Comma Separated Value (CSV)** `--format csv` flag:
-- **Markdown** (table): `--format md`
+- **list**: json (default), csv, md
+- **list** with `--summary` flag : txt (default), csv, md
+- **policy**:  txt (default), csv, md
 
 ##### Output flag
 
@@ -428,6 +430,12 @@ Primarily, the command is used to generate lists of resources, by type, that are
 
 As of now, the list can be filtered by resource `type` which include `component` or `service`.  In addition a `where` filter flags can be supplied to only include results where values meet supplied regex.  Supported keys for the `where` filter include `name`, `version`, `type` and `bom-ref` *(i.e., all names of columns in the actual report)*.
 
+#### Format flag
+
+Use the `--format` flag on the to choose one of the supported output formats:
+
+- txt (default), csv, md
+
 #### Result sorting
 
 Currently, all `resource list` command results are sorted by resource `type` then by resource `name` (required field).
@@ -672,6 +680,18 @@ make build
 
 The will produce a binary named `sbom-utility` with version set to `latest` in the project's `release` directory.
 
+```bash
+$ ls
+
+-rwxr-xr-x   1 Matt  staff  11501122 Jan 24 08:29 sbom-utility
+```
+
+```bash
+$ ./sbom-utility version
+
+Welcome to the sbom-utility! Version `latest` (sbom-utility) (darwin/arm64)
+```
+
 **Note** The binary created using `make build` will be for the local system's operating system and architecture (i.e., `GOOS`, `GOARCH`).  This would effectively match what would be reported using the `uname -s -m` unix command when run on the same local system.
 
 If you wish to build binaries for all supported combinations of `GOOS` and `GOARCH` values, use the `release` target (i.e., `make release`) which will produce named binaries of the form `sbom-utility-${GOOS}-${GOARCH}` under the `release` directory (e.g., `sbom-utility-darwin-amd64`).
@@ -681,12 +701,20 @@ make release
 ```
 
 ```bash
-GOOS=darwin GOARCH=amd64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-darwin-amd64
-GOOS=darwin GOARCH=arm64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-darwin-arm64
-GOOS=linux GOARCH=amd64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-linux-amd64
-GOOS=linux GOARCH=arm64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-linux-arm64
-GOOS=windows GOARCH=amd64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-windows-amd64
-GOOS=windows GOARCH=arm64 go build -ldflags "-X main.Version=latest -X main.Binary=sbom-utility" -o release/sbom-utility-windows-arm64
+drwxr-xr-x  14 Matt  staff       448 Jan 24 08:21 .
+drwxr-xr-x  27 Matt  staff       864 Jan 24 08:20 ..
+-rw-r--r--   1 Matt  staff      5175 Jan 24 08:21 config.json
+-rw-r--r--   1 Matt  staff       869 Jan 24 08:21 custom.json
+-rw-r--r--   1 Matt  staff     62541 Jan 24 08:21 license.json
+-rwxr-xr-x   1 Matt  staff  11485840 Jan 24 08:20 sbom-utility-darwin-amd64
+-rwxr-xr-x   1 Matt  staff  11302946 Jan 24 08:20 sbom-utility-darwin-arm64
+-rw-r--r--   1 Matt  staff     11778 Jan 24 08:20 sbom-utility-latest.bom.json
+-rwxr-xr-x   1 Matt  staff   8376320 Jan 24 08:20 sbom-utility-linux-amd64
+-rwxr-xr-x   1 Matt  staff   8060928 Jan 24 08:20 sbom-utility-linux-arm64
+-rwxr-xr-x   1 Matt  staff   7995392 Jan 24 08:21 sbom-utility-linux-ppc64
+-rwxr-xr-x   1 Matt  staff   8585216 Jan 24 08:21 sbom-utility-linux-s390x
+-rwxr-xr-x   1 Matt  staff   8457728 Jan 24 08:21 sbom-utility-windows-amd64
+-rwxr-xr-x   1 Matt  staff   8081408 Jan 24 08:21 sbom-utility-windows-arm64
 ```
 
 ```bash

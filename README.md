@@ -164,7 +164,7 @@ For example, output a license summary for an SBOM to a file named `output.txt`:
 This subcommand will emit a list of all licenses found in and SBOM (defaults to `json` format):
 
 ```bash
-././sbom-utility license list -i examples/cyclonedx/BOM/juice-shop-11.1.2/bom.json
+./sbom-utility license list -i examples/cyclonedx/BOM/juice-shop-11.1.2/bom.json
 ```
 
  The output will be an array of CycloneDX `LicenseChoice` data structures.  For example, you would see licenses identified using SPDX IDs, license expressions (of SPDX IDs) or ones with "names" of licenses that do not necessarily map to a canonical SPDX ID along with the actual base64-encoded license or legal text.
@@ -335,10 +335,10 @@ In this example, only the `--from` clause is needed to select an object.  The `-
 ./sbom-utility query -i test/cyclonedx/cdx-1-4-mature-example-1.json --from metadata.component
 ```
 
-is equivalent to:
+is equivalent to using the wildcard character (which may need to be enclosed in single or double quotes depending on your shell):
 
 ```bash
-./sbom-utility query -i test/cyclonedx/cdx-1-4-mature-example-1.json --select * --from metadata.component
+./sbom-utility query -i test/cyclonedx/cdx-1-4-mature-example-1.json --select '*' --from metadata.component
 ```
 
 Sample output:
@@ -859,7 +859,12 @@ $ make test_cmd
 Example: running all tests in the `cmd` package:
 
 ```bash
-go test github.com/ibm/sbom-utility/cmd -v
+go test github.com/CycloneDX/sbom-utility/cmd -v
+```
+
+Run in "quiet" mode to not see error test output:
+```bash
+go test github.com/CycloneDX/sbom-utility/cmd -v --quiet
 ```
 
 run an individual test within the `cmd` package:

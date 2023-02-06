@@ -15,11 +15,7 @@
         "properties": [
           {
             "name": "urn:ibm:legal:disclaimer",
-            "value": "This SBOM is IBM Confidential Information. The person(s) to whom IBM provides this SBOM may only share the SBOM with those within its company who have a need to know. For clarity, this SBOM may not be shared with any other company or other third-party. IBM offers no representations or warranties regarding the SBOM."
-          },
-          {
-            "name": "urn:ibm:legal:coverage",
-            "value": "This SBOM is current as of the date it was generated and is subject to change. This SBOM covers the content of the indicated component, but does not cover the content of any components or dependencies therein (which may be covered by their own SBOMs provided by their respective suppliers)."
+            "value": "This SBOM is current as of the date it was generated and is subject to change. This SBOM covers the content of the indicated component, but does not cover the content of any components or dependencies therein (which may be covered by their own SBOMs provided by their respective suppliers). IBM has taken reasonable steps to prepare this SBOM, but can make no representation or warranty that the SBOM is fully complete or accurate. Unless specifically stated otherwise in this SBOM, IBM does not represent that this SBOM complies with the requirements of NTIA’s Minimum Elements for a Software Bill of Materials (SBOM) or any other statutory or regulatory requirement of the United States or any other jurisdiction.\n\nThis SBOM is IBM Confidential Information. The person(s) to whom IBM provides this SBOM may only share the SBOM with those within its company enterprise who have a need to know. For clarity, this SBOM may not be shared with any other company, regulatory, governmental agency, or other third-party without IBM’s express written consent. IBM offers no representations or warranties regarding the SBOM."
           }
         ],
         "component": {

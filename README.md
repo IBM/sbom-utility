@@ -68,21 +68,34 @@ The utility also is designed to produce output formats (e.g., JSON) and handle e
 
 ### Installation
 
-Since the utility comes with a default configuration file and input schemas ready-mde for both SPDX and CycloneDX validation, the best way to install it (at this time) is to clone the entirety of the repository and then [build it](#building) using the `Makefile`.
+Download and decompress the correct archive file (i.e., `.tar` for Unix/Linux systems and `.zip` for Windows) for your target system's architecture and operating system from the releases page within this repository.
 
-Over time, we hope to be able to create a release process for the binary with just the necessary supporting files.
+- https://github.com/ibm/sbom-utility/releases
 
-```bash
-git clone git@github.com:IBM/sbom-utility.git
-```
+The archive will contain the following files:
+
+- `sbom-utility` - binary executable
+- `config.json` - required schema configuration file
+- `license.json` - optional license policy configuration file
+- `custom.json` *(experimental)* - optional custom validation configuration file
+- `LICENSE` - the software license for the utility (i.e. Apache 2)
+- `sbom-utility`-\<version\>.sbom.json - the Software Bill-of-Materials for the utility
 
 ---
 
 ## Running
 
-Currently, you must build an executable for your local system. See the [Prerequisites](#prerequisites) and [Building](#building) sections under [Development](#development) for details.
+For convenience, assure that the required `config.json` and optional `license.json` and `custom.json` configuration files are copied to the same directory as the executable.
 
-**Note** Be sure to copy the required configuration files `config.json` and `license.json` to wherever you place the executable in your PATH.  Otherwise, you will have to supply their relative location as command flags.
+By default, the executable attempts to load the rall configuration files from the same path where the executable is run from. If you choose to keep them in a different directory, you will have to supply their relative locations using command flags.
+
+##### MacOS - Granting executable permission
+
+On MacOS, the utility is not a registered Apple application and may warn you that it cannot open it the first time. If so, you will need to explicitly permit the executable to be "opened" on your system acknowledging it trusted.  This process is initiated from the Finder application by using `ctrl-click` on the executable file and agreeing using the "Open" button.
+
+- See https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac
+
+---
 
 ### Commands
 
@@ -697,6 +710,18 @@ If you wish to build binaries for all supported combinations of `GOOS` and `GOAR
 
 #### Releasing
 
+##### GitHub
+
+In order to initiate the release workflow, simply go to the release page of the repository:
+
+- https://github.com/ibm/sbom-utility/releases
+
+and click on the `Draft a new release` button.  Follow the instructions to create a new version tag, provide an appropriate release title and description and `publish` the release.  The GitHub release workflow will be triggered automatically.
+
+##### Local
+
+For local development, you may choose to make a release on your machine using the `Makefile` directive `release`:
+
 ```bash
 make release
 ```
@@ -840,12 +865,12 @@ $ make test_cmd
 Example: running all tests in the `cmd` package:
 
 ```bash
-go test github.com/CycloneDX/sbom-utility/cmd -v
+go test github.com/ibm/sbom-utility/cmd -v
 ```
 
 Run in "quiet" mode to not see error test output:
 ```bash
-go test github.com/CycloneDX/sbom-utility/cmd -v --quiet
+go test github.com/ibm/sbom-utility/cmd -v --quiet
 ```
 
 run an individual test within the `cmd` package:

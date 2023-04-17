@@ -2,19 +2,19 @@
 
 # sbom-utility
 
-The `sbom-utility` has been donated to the CycloneDX project under the OWASP Foundation.  Please contribute and obtain releases at its new home:
+The `sbom-utility` has been donated to the CycloneDX project under the OWASP Foundation.  This repository is now archived at the commit level at time of donation. Please contribute and obtain releases at its new home:
 
 - https://github.com/CycloneDX/sbom-utility
   - releases: https://github.com/CycloneDX/sbom-utility/releases
 
 
-Press Announcements:
+See the Press Announcements:
 
 - OWASP Foundation: https://owasp.org/blog/2023/03/01/ibm-contributes-two-open-source-projects-sbom-utility-and-license-scanner-to-cyclonedx.html
 
 - CycloneDX Project: https://cyclonedx.org/news/ibm-contributes-two-open-source-projects-sbom-utility-and-license-scanner-to-cyclonedx/
 
-Press articles on the donation:
+and press articles on the donation:
 
 - The New Stack: https://thenewstack.io/ibm-donates-sbom-code-to-owasp/
 

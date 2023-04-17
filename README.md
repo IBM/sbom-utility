@@ -2,6 +2,35 @@
 
 # sbom-utility
 
+The `sbom-utility` has been donated to the CycloneDX project under the OWASP Foundation.  Please contribute and obtain releases at its new home:
+
+- https://github.com/CycloneDX/sbom-utility
+  - releases: https://github.com/CycloneDX/sbom-utility/releases
+
+
+Press Announcements:
+
+- OWASP Foundation: https://owasp.org/blog/2023/03/01/ibm-contributes-two-open-source-projects-sbom-utility-and-license-scanner-to-cyclonedx.html
+
+- CycloneDX Project: https://cyclonedx.org/news/ibm-contributes-two-open-source-projects-sbom-utility-and-license-scanner-to-cyclonedx/
+
+Press articles on the donation:
+
+- The New Stack: https://thenewstack.io/ibm-donates-sbom-code-to-owasp/
+
+- Dark Reading: https://www.darkreading.com/dr-tech/ibm-contributes-supply-chain-security-tools-to-owasp
+
+- SDX Central: https://www.sdxcentral.com/articles/news/ibm-enhances-software-supply-chain-security-contributes-sbom-project-to-open-source-foundation/2023/03/
+
+- BetaNews: https://betanews.com/2023/03/01/ibm-and-owasp-announce-projects-to-help-secure-the-software-supply-chain/
+
+- ZephyrNet: https://zephyrnet.com/ibm-contributes-supply-chain-security-tools-to-owasp/
+
+- IBM News Room: https://newsroom.ibm.com/
+
+
+---
+
 This utility is designed to be an API platform used primarily to **validate CycloneDX or SPDX SBOMs** (encoded in JSON format) against versioned JSON schemas as published by their respective organizations.
 
 More importantly, the utility enables validation of SBOMs against derivative, "customized" schemas that can be used to enforce further data requirements not captured in the "base" schemas (e.g., industry or company-specific schemas).
